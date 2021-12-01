@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - Created by Osman Balci on 2021.7.16
+  - Copyright © 2021 Osman Balci. All rights reserved.
+  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<head>
+    <style type="text/css">
+        .footer {
+            background: cornflowerblue;
+            display: flex;
+            gap: 3em;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-weight: bold;
+            margin-top:3em;
+        }
+
+        .links,
+        .social-media-icons {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .social-media-icons {
+            text-align: center;
+            gap: 0.5em;
+        }
+        .links{
+            display: flex;
+            flex-flow: row;
+            gap: 3em;
+        }
+        .links a{
+            text-decoration: none;
+        }
+        .social-media-icons{
+            display: flex;
+            flex-flow: row;
+            flex-wrap: wrap;
+            gap:1em;
+        }
+        .social-media-icons i{
+            font-size: 2.5em;
+            color: black;
+        }
+        .social-media-icons a{
+            text-decoration: none;
+        }
+        .icon-fab fa-facebook:hover{
+            color:#1877f2;
+        }
+        .icon-fab fa-twitter:hover{
+            color:rgb(29, 155, 240);
+        }
+        .icon-fab fa-instagram:hover{
+            color:#E1306C;
+        }
+
+    </style>
+
+</head>
+<!--
+*********************************************
+* Footer Component of Template siteTemplate *
+*********************************************
+This page's content is displayed on the bottom of each page created based on the siteTemplate.
+Changes made in this file will show up automatically with all pages created based on the
+siteTemplate for the entire site, achieving great maintainability.
+-->
+<ui:composition>
+    <br /><br />
+    <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+        <tr>
+            <td align="left" valign="middle" style="width:33%">
+
+
+            <a class="links" target="/" style="padding-left: 0.5em;">Contact Us</a>
+            <a class="links" target="/" style="padding-left: 1em;"> Location</a>
+            <a class="links" target="/" style="padding-left: 1em;"> About Us</a>
+
+
+        </td>
+            <td align="center" valign="middle"  style="width:33%">
+
+
+
+            <p> Follow us on:
+            <a target="/" class="social-media-icons" style="padding-left: 0.2em;"><i class="fab fa-facebook"></i></a>
+            <a target="/" class="social-media-icons" style="padding-left: 0.2em;"><i class="fab fa-twitter"></i></a>
+            <a target="/" class="social-media-icons" style="padding-left: 0.2em;"> <i class="fab fa-instagram"></i></a>
+            </p>
+
+        </td>
+            <td align="right" valign="middle"  style="width:33%">
+
+
+            <p class="copyright"> Copyright © 2021 | All Rights Reserved </p>
+
+            </td>
+        </tr>
+    </table>
+
+
+</ui:composition>
+</html>
+

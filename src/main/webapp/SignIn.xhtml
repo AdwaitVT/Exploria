@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Created by Jayesh Pandey on 2021.10.21
+  ~ Copyright © 2021 Jayesh Pandey. All rights reserved.
+  ~
+  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<head>
+    <style type="text/css">
+
+        td .panelGridColumn1 {
+            text-align: left;
+            white-space: nowrap;
+            padding-top: 5px !important;
+            padding-bottom: 5px !important;
+            background-color: whitesmoke;
+            bottom: 0px;
+        }
+        .login_section{
+            background-color: #272540;
+            color: white;
+        }
+        body table.ui-panelgrid .ui-panel-grid-cell {
+            border: 0;
+            background-color: whitesmoke;
+        }
+
+
+    </style>
+
+</head>
+
+    <!-- This page is constructed based on the siteTemplate -->
+    <ui:composition template="/template/siteTemplate.xhtml">
+        <ui:define name="title">
+            <!-- Set the page title -->
+            <h:outputText value="Login / Sign Up" />
+        </ui:define>
+
+        <!-- Create the content for this page below -->
+        <ui:define name="editableContent">
+            <table style="border-spacing: 1em">
+                <tr>
+                    <td class="login_section" style="background-color: #272540; border-radius: 25px;">
+            <div align="left" style="height:100%; width: auto;padding: 0 2em 0 2em;">
+                <h1 style="color: whitesmoke;font-size: 36px;">Login</h1>
+                <br />
+                <h:form >
+                    <p:panelGrid columns="1" columnClasses="panelGridColumn1" >
+
+                        <!--<h:outputLabel value="Username:" for="username1"   style="float: left;border: 0px; color: white" />-->
+                        <p:inputText id="username1" value="#{loginManager.username}" placeholder="Username" style="width: 290px;border-radius: 25px;"
+                                     required="true" requiredMessage="Username is required."  >
+                        </p:inputText>
+
+
+                        <!--<h:outputLabel value="Password:" for="password1" style="float: left; color: white" />-->
+                        <p:password id="password1" value="#{loginManager.password}" placeholder="Password" style="width: 290px;border-radius: 25px;margin-top: 1em;"
+                                    feedback="false"  >
+                        </p:password>
+
+                    </p:panelGrid>
+                    <br/><br/>
+                    <!--
+                    ================================
+                    |         SIGN IN Button       |
+                    ================================
+                    -->
+                    <p:commandButton id="login" value="Sign In" icon="fas fa-sign-in-alt" styleClass="rounded-button"
+                                     ajax="false" action="#{loginManager.loginUser()}" />
+                    &nbsp;
+
+                    <!--
+                    ================================
+                    |         CANCEL Button        |
+                    ================================
+                    -->
+                    <p:button outcome="/index" value="Cancel" icon="fas fa-ban" styleClass="ui-button-outlined" />
+                </h:form>
+            </div>
+                    </td>
+
+                    <td class="sign_up_section" style="background-color: #C4C4C4; border-radius: 25px; width: 100%;">
+
+                            <div align="left" style="width:100%; margin:0 auto;padding-left: 1em;margin: 2em;">
+                                <h:form id="AccountCreationForm">
+                                    <h1 style="color: white;font-size: 36px;text-align: left;padding-left: 2em;">Sign Up</h1>
+                                    <p:panelGrid columns="2" columnClasses="panelGridColumn1,panelGridColumn2">
+                                        <!--
+                                        ********************************
+                                        *          FIRST NAME          *
+                                        ********************************
+                                        -->
+                                        <p:outputLabel value="Name:" for="firstName"  style="color: white;font-size: 24px " />
+                                        <!--
+                                        The required="true" attribute automatically places an asterisk *
+                                        at the end of the value to indicate that the field is required.
+                                        -->
+                                        <p:inputText id="firstName" value="#{userController.firstName}" style="width: 290px;border-radius: 25px;"
+                                                     required="true" requiredMessage="First Name is required!">
+                                            <f:validateLength minimum="2" />
+                                        </p:inputText>
+
+
+
+
+
+
+
+                                        <!--
+                                        ********************************
+                                        *       SECURITY QUESTION      *
+                                        ********************************
+                                        -->
+                                        <p:outputLabel value="Security Question:" for="securityQuestion" style="color: white;font-size: 24px " />
+                                        <p:selectOneMenu id="securityQuestion" value="#{userController.securityQuestionNumber}" style="border-radius: 25px;" >
+                                            <!--
+                                            List of security questions is displayed for the user to select one.
+                                            The first security question is selected as the default.
+                                            -->
+                                            <f:selectItems value="#{userController.security_questions}"/>
+                                        </p:selectOneMenu>
+
+                                        <!--
+                                        ********************************
+                                        *        SECURITY ANSWER       *
+                                        ********************************
+                                        -->
+                                        <p:outputLabel value="Security Answer:" for="securityAnswer"  style="color: white;font-size: 24px " />
+                                        <p:inputText id="securityAnswer" value="#{userController.answerToSecurityQuestion}"
+                                                     style="width: 290px;border-radius: 25px;" required="true"
+                                                     requiredMessage="Security Answer is required!">
+                                            <f:validateLength minimum="2" />
+                                        </p:inputText>
+
+                                        <!--
+                                        ********************************
+                                        *         EMAIL ADDRESS        *
+                                        ********************************
+                                        -->
+                                        <p:outputLabel value="Email:" for="email"  style="color: white;font-size: 24px "/>
+                                        <p:inputText id="email" value="#{userController.email}" style="width: 290px;border-radius: 25px;"
+                                                     required="true" requiredMessage="Email address is required!">
+                                            <f:validateLength minimum="2" />
+                                            <!--
+                                            Execute the "validate" method in the "EmailValidator.java"
+                                            class file to validate the email address entered.
+                                            -->
+                                            <f:validator validatorId="emailValidator" />
+                                        </p:inputText>
+
+                                        <!--
+                                        ********************************
+                                        *       ACCOUNT USERNAME       *
+                                        ********************************
+                                        -->
+                                        <p:outputLabel id="usernameEntry" value="Username:" for="username"  style="color: white;font-size: 24px ">
+                                            &nbsp;<i class="fas fa-question-circle" />
+                                            <!--
+                                            When the user mouses over the icon, a tooltip is displayed
+                                            to provide context-sensitive help information to the user.
+                                            -->
+                                            <p:tooltip for="usernameEntry" value="Enter 6 to 32 characters with capital letter, lowercase letter, number, or special character _ . - @"
+                                                       showEffect="clip" hideEffect="explode" position="top" />
+                                        </p:outputLabel>
+
+                                        <p:inputText id="username" value="#{userController.username}" style="width: 290px;border-radius: 25px;"
+                                                     required="true" requiredMessage="Username is required!">
+                                            <!--
+                                            Execute the "validate" method in the "UsernameValidator.java"
+                                            class file to validate the username entered.
+                                            -->
+                                            <f:validator validatorId="usernameValidator"/>
+                                        </p:inputText>
+
+                                        <!--
+                                        ********************************
+                                        *       ACCOUNT PASSWORD       *
+                                        ********************************
+                                        -->
+                                        <p:outputLabel id="passwordEntry" value="Password:" for="password" style="color: white;font-size: 24px ">
+                                            &nbsp;<i class="fas fa-question-circle" />
+                                            <!--
+                                            When the user mouses over the icon, a tooltip is displayed
+                                            to provide context-sensitive help information to the user.
+                                            -->
+                                            <p:tooltip for="passwordEntry" value="Enter 8 to 32 characters with at least 1: capital letter, lowercase letter, number, and special characters above the numbers on the keyboard."
+                                                       showEffect="clip" hideEffect="explode" position="top" />
+                                        </p:outputLabel>
+
+                                        <!--
+                                        p:password changes the characters typed to bullets to hide the password as it is typed.
+                                        feedback="true" displays password strength indicator.
+                                        -->
+                                        <p:password id="password" value="#{userController.password}" style="width: 290px;border-radius: 25px;"
+                                                    feedback="true" required="true" requiredMessage="Password is required!" >
+                                            <!--
+                                            Execute the "validate" method in the "PasswordValidator.java"
+                                            class file to validate the password entered.
+                                            -->
+                                            <f:validator validatorId="passwordValidator" />
+                                        </p:password>
+
+                                        <!--
+                                        ********************************
+                                        *       CONFIRM PASSWORD       *
+                                        ********************************
+                                        -->
+                                        <p:outputLabel value="Confirm Password:" for="confirmPassword" style="color: white;font-size: 24px "/>
+                                        <p:password id="confirmPassword" value="#{userController.confirmPassword}" style="width: 290px;border-radius: 25px;"
+                                                    required="true" requiredMessage="Confirm Password is required!" />
+
+                                    </p:panelGrid>
+                                    <br /><br />
+
+                                    <!--
+                                    ================================
+                                    |    CREATE ACCOUNT Button     |
+                                    ================================
+                                    -->
+                                    <p:commandButton id="createAccount" value="Submit" icon="fas fa-arrow-up" styleClass="rounded-button"
+                                                     ajax="false" action="#{userController.createAccount()}" style="margin-left: 7.5em;"/>
+                                    &nbsp;&nbsp;
+                                    <!--
+                                    ================================
+                                    |        CANCEL Button         |
+                                    ================================
+                                    -->
+                                    <p:button outcome="/index" value="Cancel" icon="fas fa-ban" styleClass="ui-button-outlined"  />
+
+                                </h:form>
+                            </div>
+
+                    </td>
+                </tr>
+            </table>
+            <br/><br/><br/>
+        </ui:define>
+    </ui:composition>
+</html>

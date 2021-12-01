@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!-- This page is constructed based on the siteTemplate -->
+    <ui:composition template="/template/siteTemplate.xhtml">
+
+        <!-- Create the content for this page below -->
+        <ui:define name="editableContent">
+            <div align="center">
+                <!-- 
+                ========================================
+                *   PrimeFaces Galleria Image Slider   *
+                ========================================
+                Various effect options for transitions: blind, bounce, clip, drop, explode, fade,
+                fold, highlight, puff, pulsate, scale, shake, size, slide, and transfer.
+                -->
+                <p:galleria value="#{sliderController.listOfSliderImageFilenames}"
+                            var="imageFilename" effect="fade" effectSpeed="1000" showFilmstrip="true"
+                            panelWidth="800" panelHeight="313" showCaption="true">
+
+                    <p:graphicImage value="/resources/images/slider/#{imageFilename}"
+                                    alt="#{sliderController.description(imageFilename)}" title="" />
+                </p:galleria>
+                <div class="category">
+                    <table style ="width: 100%;text-align: center;margin-top: 1em;">
+                        <tr>
+                            <td style ="width: 33%">
+
+                                <h:link outcome="/index">
+                                    <img src="#{resource['images:hotel.png']}"
+                                         style="height:100px; width:auto;  border:none;"
+                                         alt="Hotel Logo" />
+                                </h:link>
+                                <h1> Best Hotel Offers</h1>
+                        </td>
+                            <td style ="width: 33%; text-align: center;border-left: 1px solid black;">
+
+                                <h:link outcome="/index">
+                                    <img src="#{resource['images:airplane.png']}"
+                                         style="height:100px; width:auto;  border:none;"
+                                         alt="FLights Logo" />
+                                </h:link>
+                        <h1> Best Flights Offers</h1>
+                    </td>
+                            <td style ="width: 33%;text-align: center;border-left:1px solid black;">
+
+                                <h:link outcome="/index">
+                                    <img src="#{resource['images:destination.png']}"
+                                         style="height:100px; width:auto;  border:none;"
+                                         alt="Destination Logo" />
+                                </h:link>
+                                <h1>Top Destination</h1>
+                    </td>
+                    </tr>
+                    </table>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
